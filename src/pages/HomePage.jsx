@@ -3,22 +3,22 @@ import { Loading } from "../components/Loading.js";
 import useGithub from "../hooks/useGithub.js"
 
 export const HomePage = () => {
-    const { isLoading, users } = useGithub();
+    const { isLoading, products } = useGithub();
     const [currentPage, setCurrentPage] = useState(0);
     const [search, setSearch] = useState('');
 
     const filteredUsers = () => {
         if (search.length === 0) {
-            return users.slice(currentPage, currentPage + 5);
+            return products.slice(currentPage, currentPage + 5);
         }
 
-        const filtered = users.filter(user => user.login.includes(search));
+        const filtered = products.filter(user => user.login.includes(search));
 
         return filtered.slice(currentPage, currentPage + 5);
     };
 
     const nextPage = () => {
-        if (users.filter(user => user.login.includes(search)).length  > currentPage +  5) {
+        if (products.filter(user => user.login.includes(search)).length  > currentPage +  5) {
             setCurrentPage(currentPage +5)
         }
     }
@@ -36,7 +36,7 @@ export const HomePage = () => {
 
     return (
         <div className='mt-5'>
-            <h1>Github Users List</h1>
+            <h1>Concept Test</h1>
             <hr />
             <input
                 type="text"
@@ -70,19 +70,19 @@ export const HomePage = () => {
                 </thead>
                 <tbody>
                     {
-                        filteredUsers().map(user => (
-                            <tr key={user.id}>
-                                <td>{user.id}</td>
+                        filteredUsers().map(product => (
+                            <tr key={product.id}>
+                                <td>{product.id}</td>
                                 <td>
                                     <img
-                                        src={user.avatar_url}
-                                        alt={user.login}
+                                        src={product.image}
+                                        alt={product.name}
                                         width="120px"
                                     />
                                 </td>
-                                <td>{user.login}</td>
-                                <td>{user.type}</td>
-                                <td>{user.html_url}</td>
+                                <td>{product.name}</td>
+                                <td>{product.price}</td>
+                                <td><a href={product.meta.link} target="_blank">{product.meta.ref}</a></td>
                             </tr>
                         ))
                     }

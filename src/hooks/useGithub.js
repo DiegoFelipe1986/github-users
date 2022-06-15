@@ -4,20 +4,20 @@ import {fetchAllUsers} from '../helpers/fetchAllUsers';
 
 const useGithub = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const [users, setUsers] = useState([]);
+    const [products, setUsers] = useState([]);
 
     useEffect(() => {
         // Loading users
-        fetchAllUsers().then(users => {
+        fetchAllUsers().then(products => {
             setIsLoading(false);
-            setUsers(users)
+            setUsers(products)
         });
     }, [])
 
 
     return{
         isLoading,
-        users
+        products
     }
 }
 
