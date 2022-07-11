@@ -4,7 +4,7 @@ import useGithub from "../hooks/useGithub.js"
 import '../App.css';
 
 export const HomePage = () => {
-    const { isLoading, products } = useGithub();
+    const { isLoading, products, devices } = useGithub();
     const [currentPage, setCurrentPage] = useState(0);
     const [search, setSearch] = useState('');
 
@@ -16,6 +16,16 @@ export const HomePage = () => {
         const filtered = products.filter(product => product.name.includes(search));
 
         return filtered.slice(currentPage, currentPage + 4);
+    };
+
+    const filteredDevices = () => {
+        if (search.length === 0) {
+
+            return devices.slice(currentPage, currentPage + 12);
+        }
+
+        const filtered2 = devices.filter(device => device.url.includes(search));
+        return filtered2.slice(currentPage, currentPage + 4);
     };
 
     const nextPage = () => {
@@ -69,10 +79,24 @@ export const HomePage = () => {
                 </div>
             </div>
             <div className="container">
-
                 <div className="row mt-5 ">
-
                     {
+
+                            filteredDevices().map(devices => (
+                                <div>
+
+                                    <div className="col-sm-3 mt-3">
+                                        <div className="card " key={devices.idCatalogo} >
+                                            {devices.url}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            ))
+
+                    }
+                    {/* {
                         filteredUsers().map(product => (
                             <div className="col-sm-3 mt-3">
                                 <div className="card " key={product.name} >
@@ -87,7 +111,7 @@ export const HomePage = () => {
                                 </div>
                             </div>
                         ))
-                    }
+                    } */}
                 </div>
             </div>
 
