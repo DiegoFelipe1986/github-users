@@ -77,7 +77,7 @@ export const HomePage = () => {
                                
                                 <div >
                                     <div className="card " key={devices.idCatalogo} >
-                                        <img className="card-img-top img-fluid" src={devices.image_links[0]} alt={devices.titles[0]} r />
+                                        <img className="card-img-top img-fluid" src={devices.image_links[0]} alt={devices.titles[0]} />
                                         <div className="card-body">
                                             <div style={{'height': '70px'}}>
                                                 <h5 className="card-title">{devices.titles[0]}</h5>
@@ -87,7 +87,6 @@ export const HomePage = () => {
                                     
                                     </div>
                                 </div>
-
                             </div>
                         ))
                     }

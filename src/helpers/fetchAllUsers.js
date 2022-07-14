@@ -2,7 +2,7 @@ import { githubApi } from '../api/githubApi';
 
 
 export const fetchAllUsers = async () => {
-    const resp = await githubApi.get('/products');
+
     const resp2 = await githubApi.get('/concept-test');
     const ghlist = resp2.data;
 

@@ -1,41 +1,41 @@
-import { useParams } from 'react-router-dom';
+import { createSearchParams, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import useGithub from "../hooks/useGithub.js";
+import useProducts from '../hooks/useProducts.js';
 
 function ProductPage() {
-  const { isLoading, devices } = useGithub();
-  const [currentPage, setCurrentPage] = useState(0);
-  const params = useParams();
-
-  const filteredDevices = () => {
-
-    const filtered = devices.filter(device => device.url.includes(params.id));
-    return filtered.slice(currentPage, currentPage + 12);
-  };
-
+  const { catalog } = useProducts()
 
   return (
     <>
+
       <div className="container">
-        {
-          filteredDevices().map(device => (
-            <div className="mt-5">
-              <div className="row">
-                
-                {device.image_links.map(image => (
-                      <div className='col-sm-3 mt-3'>
-                        <div className='card'>
-                          <img className="card-img-top img-fluid" src={image} alt={image}  />
+
+        <div className="mt-5">
+          <div className="row">
+
+            {
+              catalog.items.map(item => (
+                <div className="col-sm-3 mt-3">
+                  <div>
+                    <div className='card'>
+                      <img className="card-img-top img-fluid" src={item.imageLink} alt={item.title} />
+                      <div className='card-body'>
+                        <div>
+                          <h5 className="card-title">{item.title}</h5>
                         </div>
+                        <a href={item.link} className="btn btn-primary" target="_blank" rel="noreferrer">Ver producto</a>
                       </div>
-                  ))
-              
-                }
-               
-              </div>
-            </div>
-          ))
-        }
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+
+          </div>
+        </div>
+
+
       </div>
     </>
   )
