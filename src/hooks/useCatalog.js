@@ -1,18 +1,16 @@
+import {useEffect, useState} from 'react';
+import {fetchAllUsers, fetchCatalog} from '../helpers/fetchAllUsers';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { githubApi } from '../api/githubApi';
-import { Loading } from "../components/Loading.js";
 
 
-export default () => {
-    const [catalog, setCatalog] = useState({});
+const useCatalog = () => {
     const [isLoading, setIsLoading] = useState(true);
-
+    const [catalog, setCatalog] = useState({});
     const params = useParams();
 
     useEffect(() => {
 
-        githubApi.get('/concept-test').then(
+        fetchCatalog().then(
             ({ data }) => {
                 const items = {}
                 data.forEach(item => {
@@ -24,19 +22,18 @@ export default () => {
                                 id: itemId,
                                 imageLink: item.image_links[itemIdIndex],
                                 title: item.titles[itemIdIndex],
-                                link: item.links[itemIdIndex],
-                                price: item.prices[itemIdIndex]
+                                link: item.links[itemIdIndex]
                             }
                         ))
                     }
 
                 });
-                setIsLoading(false)
                 setCatalog(items[params.id])
-              
+                setIsLoading(false)
             }
         );
-        
     }, [])
-    return {isLoading, catalog}
+    return{catalog, isLoading}
 }
+
+export default useCatalog;

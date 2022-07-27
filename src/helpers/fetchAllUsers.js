@@ -3,10 +3,19 @@ import { githubApi } from '../api/githubApi';
 
 export const fetchAllUsers = async () => {
 
-    const resp2 = await githubApi.get('/concept-test');
-    const ghlist = resp2.data;
+    const resp = await githubApi.get('/concept-test');
+    const ctList = resp.data;
 
-    return ghlist;
+    return ctList;
+
+}
+
+export const fetchCatalog = async () => {
+
+    const resp = await githubApi.get('/concept-test');
+    const ctList = resp;
+
+    return ctList;
 
 }
 

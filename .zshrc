@@ -1,0 +1,1 @@
+export PATH=/Users/diegopinzon/.nvm/versions/node/v12.22.7/bin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/diegopinzon/.nvm/versions/node/v12.22.7/bin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/opt/homebrew/bin

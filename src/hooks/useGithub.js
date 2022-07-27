@@ -6,6 +6,11 @@ const useGithub = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [devices, setdevices] = useState([]);
 
+    const getDevices = () => {
+
+    }
+
+    
     useEffect(() => {
 
         fetchAllUsers().then(devices => {
